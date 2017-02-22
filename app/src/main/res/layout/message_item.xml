@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginLeft="1dp"
+    android:layout_marginRight="1dp"
+    app:cardCornerRadius="5dp"
+    app:elevation="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/headPhoto"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal|left" />
+
+        <LinearLayout
+            android:id="@+id/base_swipe_item_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_gravity="center_horizontal|right">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|bottom"
+                android:layout_weight="1">
+            <TextView
+                android:id="@+id/tvMessageFrom"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:text="小王"
+                android:gravity="center_horizontal|left"/>
+
+            <TextView
+                android:id="@+id/tvMessageTime"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="12:00"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:gravity="center_horizontal|right"/>
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvMessageContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:textColor="#999999"
+                    android:textSize="12sp"
+                    android:gravity="center_horizontal|left"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

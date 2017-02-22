@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/course_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffefebe7"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.mrwen.activity.MainActivity">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton4"
+            android:text="课程信息"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton5"
+            android:text="视频管理"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton6"
+            android:text="习题测验"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_weight="1"/>
+
+    </RadioGroup>
+
+    <Button
+        android:text="保存"
+        android:background="#FF7043"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/btSaveCourse"
+        android:layout_below="@+id/radioGroup2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="490dp" />
+</RelativeLayout>

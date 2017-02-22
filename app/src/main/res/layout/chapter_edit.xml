@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:showDividers="middle"
+    android:orientation="vertical"
+    android:divider="@drawable/divider_line">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:text="单元名称"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            style="@style/left_info_text_style" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            android:id="@+id/et_chapter_edit_unitName"
+            android:ems="12"
+            android:gravity="center"
+            style="@style/right_info_text_style"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:text="知识点"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            style="@style/left_info_text_style"
+            android:id="@+id/tvCourseName"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            android:id="@+id/et_chapter_konwledgePoint"
+            android:ems="12"
+            android:gravity="center"
+            style="@style/right_info_text_style"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/coursen_edit_rectangle_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+        <TextView
+            android:text="单元介绍"
+            style="@style/left_info_text_style"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:text="点击编辑"
+            android:maxLines="1"
+            style="@style/right_info_text_style"
+            android:id="@+id/tv_chapter_description" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:text="保存"
+            android:background="@color/color_red_main"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/bt_saveUnit"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>
+

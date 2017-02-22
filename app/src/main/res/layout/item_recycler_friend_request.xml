@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_marginTop="3dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/light_grey"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="5dp"
+        >
+
+        <ImageView
+            android:id="@+id/iv_contact_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_account_circle_blue_600_24dp" />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:id="@+id/tv_contact_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="张三" />
+                <TextView
+                    android:id="@+id/tv_identity"
+                    android:textColor="@android:color/black"
+                    android:text="身份"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:id="@+id/tv_contact_signiture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="明天要刷完这一章" />
+        </LinearLayout>
+        <FrameLayout
+            android:id="@+id/fl_add"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:visibility="invisible"
+                android:id="@+id/pg_add_friend"
+                android:layout_gravity="center"
+                android:minWidth="30dp"
+                android:maxWidth="30dp"
+                android:maxHeight="30dp"
+                android:minHeight="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_added"
+                android:visibility="invisible"
+                android:padding="5dp"
+                android:background="@drawable/button_background_added"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_green_light"
+                android:text="已添加"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_add_friend"
+                android:clickable="true"
+                android:padding="5dp"
+                android:background="@drawable/button_background_add_friend"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_blue_dark"
+                android:text="同意"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

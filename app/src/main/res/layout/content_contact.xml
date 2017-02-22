@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_contact"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_grey"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_contact">
+
+    <RelativeLayout
+        android:id="@+id/rl_friend_request"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            style="@style/left_info_text_style"
+            android:text="好友请求"/>
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/iv_person_info_photo"
+            android:src="@drawable/ic_arrow_check"
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            style="@style/right_info_text_style"
+            android:id="@+id/tv_number"
+            android:layout_toLeftOf="@id/iv_person_info_photo"
+            android:text="3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+    <com.example.mrwen.view.AnimatedExpandableListView
+        android:id="@+id/aelv_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.mrwen.view.AnimatedExpandableListView>
+</LinearLayout>

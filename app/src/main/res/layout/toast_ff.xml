@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_ff"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@android:drawable/toast_frame"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:visibility="gone"
+    >
+
+    <ImageView
+        android:id="@+id/iv_ff"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:src="@android:drawable/ic_media_ff"/>
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="00:00/00:00"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

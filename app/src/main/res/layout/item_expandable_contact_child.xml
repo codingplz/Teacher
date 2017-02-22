@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="10.0dp"
+              android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/iv_contact_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/default_photo" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@android:color/black"
+            android:id="@+id/tv_contact_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="张三" />
+        <TextView
+        android:id="@+id/tv_identity"
+        android:textColor="@android:color/black"
+        android:text="身份"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:id="@+id/tv_contact_signiture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="明天要刷完这一章" />
+    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/ll_presence"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<ImageView-->
+            <!--android:src="@drawable/shape_presence"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+        <!--<TextView-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:text="在线"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_absence"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<ImageView-->
+            <!--android:src="@drawable/shape_absence"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+        <!--<TextView-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:text="离线"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+    <!--</LinearLayout>-->
+</LinearLayout>

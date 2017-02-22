@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:showDividers="middle"
+    android:orientation="vertical"
+    android:divider="@drawable/divider_line">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:text="课程名称"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            style="@style/left_info_text_style"
+            android:id="@+id/tvCourseName"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            android:id="@+id/et_courseName"
+            android:ems="12"
+            android:gravity="center"
+            style="@style/right_info_text_style"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            style="@style/left_info_text_style"
+            android:text="封        面"/>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="60dp"
+            android:id="@+id/iv_cover"
+            android:src="@drawable/default_cover"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+
+        <TextView
+            android:text="科       目"
+            style="@style/left_info_text_style"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_alignParentRight="true"
+            android:ems="10"
+            android:maxLength="5"
+            android:gravity="center"
+            android:id="@+id/et_subject" />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+
+        <TextView
+            android:text="适用年级"
+            style="@style/left_info_text_style"
+            android:id="@+id/tvApplyGrade"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:maxLength="5"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:id="@+id/et_apply_grade" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+
+        <TextView
+            android:text="适用学期"
+            style="@style/left_info_text_style"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp"
+            android:id="@+id/sp_semester"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+
+        <TextView
+            android:text="课程种类"
+            style="@style/left_info_text_style"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height" />
+
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="30dp"
+            android:id="@+id/sp_courseMajor"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/coursen_edit_rectangle_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+        <TextView
+            android:text="课程介绍"
+            style="@style/left_info_text_style"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:text="点击编辑"
+            android:maxLines="1"
+            style="@style/right_info_text_style"
+            android:id="@+id/tv_description" />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:text="保存"
+        android:background="@color/color_red_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bt_saveCourse"
+        android:textColor="@android:color/white" />
+</LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:padding="@dimen/activity_horizontal_margin"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_ranker_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:id="@+id/tv_ranker_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:progressTint="@android:color/holo_orange_light"
+            android:isIndicator="true"
+            android:id="@+id/rating_rank"
+            android:stepSize="0.1"
+            android:rating="4.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_time"
+            android:textColor="@android:color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_rank_content"
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_marginTop="5dp"
+        android:background="@drawable/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

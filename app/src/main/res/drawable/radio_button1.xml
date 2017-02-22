@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" >
+        <bitmap android:src="@drawable/ic_school_red_500_24dp" android:tileMode="disabled" android:gravity="center" />
+    </item>
+
+    <item >
+        <bitmap android:src="@drawable/ic_school_blue_grey_300_24dp" android:tileMode="disabled" android:gravity="center" />
+    </item>
+</selector>

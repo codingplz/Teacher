@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:showDividers="middle"
+    android:orientation="vertical"
+    android:divider="@drawable/divider_line">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:text="课时名称"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            style="@style/left_info_text_style" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            android:id="@+id/et_lesson_edit_lessonName"
+            android:ems="12"
+            android:gravity="center"
+            style="@style/right_info_text_style"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:text="知识点"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            style="@style/left_info_text_style"
+            android:id="@+id/tvCourseName"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            android:id="@+id/et_lesson_konwledgePoint"
+            android:ems="12"
+            android:gravity="center"
+            style="@style/right_info_text_style"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/coursen_edit_rectangle_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height">
+        <TextView
+            android:text="课时介绍"
+            style="@style/left_info_text_style"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height" />
+
+        <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/course_edit_rectangle_height"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:background="@drawable/edittext_selector"-->
+        <!--android:id="@+id/et_courseIntroduce"-->
+        <!--android:scrollbars="vertical"-->
+        <!--android:enabled="true"-->
+        <!--android:inputType="none"-->
+        <!--android:textSize="18dp"-->
+        <!--android:minLines="5"-->
+        <!--android:maxLines="10"-->
+        <!--android:gravity="top"/>-->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:text="点击编辑"
+            android:maxLines="1"
+            style="@style/right_info_text_style"
+            android:id="@+id/tv_lesson_description" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/course_edit_rectangle_height"
+        style="@style/coursen_edit_rectangle_linear_layout">
+        <TextView
+            android:text="本节视频"
+            android:layout_width="@dimen/course_edit_textview_width"
+            android:layout_height="@dimen/course_edit_rectangle_height"
+            style="@style/left_info_text_style" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:text="选择视频"
+            android:maxLines="1"
+            style="@style/right_info_text_style"
+            android:id="@+id/tv_upload_video" />
+    </LinearLayout>
+
+
+</LinearLayout>
+

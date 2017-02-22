@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:divider="@drawable/divider_line">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height"
+            style="@style/coursen_information_check_rectangle_linear_layout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                style="@style/left_info_text_style"
+                android:layout_gravity="center"
+                android:text="单元名称"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="人教版语文必修五"
+                android:id="@+id/tv_chapter_info_name"
+                style="@style/right_info_text_style"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height"
+            style="@style/coursen_information_check_rectangle_linear_layout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                style="@style/left_info_text_style"
+                android:layout_gravity="center"
+                android:text="课时数目"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="5"
+                android:id="@+id/tv_chapter_info_lessonNumber"
+                style="@style/right_info_text_style"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height"
+            style="@style/coursen_information_check_rectangle_linear_layout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                style="@style/left_info_text_style"
+                android:layout_marginLeft="10dip"
+                android:text="知识点"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="知识点"
+                android:id="@+id/tv_chapter_info_knowledgePoint"
+                style="@style/right_info_text_style"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height"
+            style="@style/coursen_information_check_rectangle_linear_layout">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/course_info_check_rectangle_height"
+                style="@style/left_info_text_style"
+                android:layout_marginLeft="10dp"
+                android:text="单元介绍"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="本课程是对古诗词的分析..."
+                android:id="@+id/tv_chapter_info_description"
+                style="@style/right_info_text_style"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
