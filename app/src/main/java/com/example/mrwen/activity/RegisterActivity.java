@@ -1,5 +1,6 @@
 package com.example.mrwen.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -49,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity{
     String password;
     String password_again;
 
-    Boolean isUserNameUnique=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,27 +86,12 @@ public class RegisterActivity extends AppCompatActivity{
                 username=et_username.getText().toString();
                 password=et_password.getText().toString();
                 password_again=et_register_password_again.getText().toString();
-                MyDialog alertDialog=new MyDialog();
-                if(username.length()<8||username.length()>11)
-                    alertDialog.showAlertDialgo(RegisterActivity.this,"请输入8-11位的用户名");
-                else if(password.length()<6)
-                    alertDialog.showAlertDialgo(RegisterActivity.this,"请输入6位以上的密码");
-                else if(!isUserNameUnique){
-                    alertDialog.showAlertDialgo(RegisterActivity.this,"该用户名已被注册");
-                }else if(password.equals(password_again)){
-                    Intent intentPersonalInfoFill=new Intent(RegisterActivity.this,PersonInfoFillActivity.class);
-                    intentPersonalInfoFill.putExtra("username",username);
-                    intentPersonalInfoFill.putExtra("password",password);
-                    startActivity(intentPersonalInfoFill);
-                    finish();
-                }else {
-                    alertDialog.showAlertDialgo(RegisterActivity.this,"两次输入的密码不一致");
-                }
+                retrofitIsUsernameUnique(username,password);
             }
         });
 
     }
-    private void retrofitIsUsernameUnique(String username){
+    private void retrofitIsUsernameUnique(final String username,final String password){
         final MyDialog alertDialog=new MyDialog();
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl(getResources().getString(R.string.baseURL))
@@ -118,10 +103,21 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onResponse(Call<UniversalResult> call, Response<UniversalResult> response) {
                 if (response.body().getResultCode() == 1) {
-                    isUserNameUnique=true;
-                }
-                else{
-                    isUserNameUnique=false;
+                    if(username.length()<8||username.length()>11)
+                        alertDialog.showAlertDialgo(RegisterActivity.this,"请输入8-11位的用户名");
+                    else if(password.length()<6){
+                        alertDialog.showAlertDialgo(RegisterActivity.this,"请输入6位以上的密码");
+                    }else if(password.equals(password_again)){
+                        Intent intentPersonalInfoFill=new Intent(RegisterActivity.this,PersonInfoFillActivity.class);
+                        intentPersonalInfoFill.putExtra("username",username);
+                        intentPersonalInfoFill.putExtra("password",password);
+                        startActivity(intentPersonalInfoFill);
+                        finish();
+                    }else {
+                    alertDialog.showAlertDialgo(RegisterActivity.this, "两次输入的密码不一致");
+                    }
+                }else{
+                    alertDialog.showAlertDialgo(RegisterActivity.this,"该用户名已被注册");
                 }
             }
             @Override

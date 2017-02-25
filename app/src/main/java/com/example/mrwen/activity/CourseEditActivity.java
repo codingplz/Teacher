@@ -85,6 +85,11 @@ public class CourseEditActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         ArrayAdapter<String> semesterAdapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,semesterArray);
+        ArrayAdapter<String> majorAdapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,majorArray);
+        sp_semester.setAdapter(semesterAdapter);
+        sp_courseMajor.setAdapter(majorAdapter);
+
+
 
         iv_cover.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +157,8 @@ public class CourseEditActivity extends AppCompatActivity {
         subject=et_subject.getText().toString();
         grade=et_apply_grade.getText().toString();
         description=tv_description.getText().toString();
+        semester=sp_semester.getSelectedItem().toString();
+        major=sp_courseMajor.getSelectedItem().toString();
         teacherID= StaticInfo.id;
         String stringTeacherID=String.valueOf(teacherID);
         if(description.equals("点击编辑"))
@@ -162,6 +169,8 @@ public class CourseEditActivity extends AppCompatActivity {
         map.put("grade",grade);
         map.put("description",description);
         map.put("teacherID",stringTeacherID);
+        map.put("semester",semester);
+        map.put("major",major);
         return map;
     }
 

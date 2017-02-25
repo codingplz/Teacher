@@ -1,5 +1,6 @@
 package com.example.mrwen.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,8 +14,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,13 +30,16 @@ import com.example.mrwen.Utils.MyDialog;
 import com.example.mrwen.Utils.PictureCut;
 import com.example.mrwen.bean.UniversalResult;
 import com.example.mrwen.interfaces.InterfaceTeacher;
+import com.example.mrwen.otherclass.RegionDAO;
 import com.example.mrwen.staticClass.StaticInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -55,6 +64,11 @@ public class PersonInfoActivity extends AppCompatActivity {
     private static final int CROP_SMALL_PICTURE = 2;
     protected static Uri tempUri;
 
+    private ArrayAdapter<String> mCityAdapter;
+    private ArrayAdapter<String> mAreaAdapter;
+    private List<Map<String, String>> mProvinces;
+    private List<Map<String, String>> mCities;
+
     @Bind(R.id.iv_person_info_photo)
     ImageView iv_person_info_photo;
     @Bind(R.id.tv_person_info_name)
@@ -65,26 +79,23 @@ public class PersonInfoActivity extends AppCompatActivity {
     TextView tv_person_info_rank;
     @Bind(R.id.tv_person_info_subject)
     TextView tv_person_info_subject;
-    @Bind(R.id.tv_person_info_province)
-    TextView tv_person_info_province;
-    @Bind(R.id.tv_person_info_city)
-    TextView tv_person_info_city;
     @Bind(R.id.tv_person_info_signature)
     TextView tv_person_info_signature;
     @Bind(R.id.tv_person_info_phone)
     TextView tv_person_info_phone;
     @Bind(R.id.tv_person_info_email)
     TextView tv_person_info_email;
-    @Bind(R.id.r_layout_region)
-    RelativeLayout r_layout_region;
+    @Bind(R.id.layout_region)
+    LinearLayout layout_region;
+    @Bind(R.id.tv_person_info_region)
+    TextView tv_person_info_region;
 
     private Bitmap photo;
     int imageChange=0;
 
     private String realname;
     private String gender;
-    private String province;
-    private String city;
+    private String region;
     private String rank;
     private String subject;
     private String email;
@@ -99,8 +110,7 @@ public class PersonInfoActivity extends AppCompatActivity {
         tv_person_info_gender.setText(StaticInfo.gender);
         tv_person_info_rank.setText(StaticInfo.rank);
         tv_person_info_subject.setText(StaticInfo.subject);
-        tv_person_info_province.setText(StaticInfo.province);
-        tv_person_info_city.setText(StaticInfo.city);
+        tv_person_info_region.setText(StaticInfo.region.replace('_',' '));
         tv_person_info_phone.setText(StaticInfo.phone);
         tv_person_info_email.setText(StaticInfo.email);
         tv_person_info_signature.setText(StaticInfo.signature);
@@ -149,10 +159,10 @@ public class PersonInfoActivity extends AppCompatActivity {
         });
 
         //修改地区
-        r_layout_region.setOnClickListener(new View.OnClickListener() {
+        layout_region.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDialog.showRegionReviseDialog(PersonInfoActivity.this,"修改地区",tv_person_info_province.getText().toString(),tv_person_info_city.getText().toString(),tv_person_info_province,tv_person_info_city);
+                showRegionReviseDialog();
             }
         });
 
@@ -171,10 +181,7 @@ public class PersonInfoActivity extends AppCompatActivity {
                 myDialog.showSingleLineInputDialog(PersonInfoActivity.this,"修改邮箱",tv_person_info_email.getText().toString(),tv_person_info_email);
             }
         });
-
-
     }
-
 
     /**
      * 显示修改头像的对话框
@@ -326,8 +333,7 @@ public class PersonInfoActivity extends AppCompatActivity {
     private Map<String,String> getInfo(){
         realname=tv_person_info_name.getText().toString();
         gender=tv_person_info_gender.getText().toString();
-        province=tv_person_info_province.getText().toString();
-        city=tv_person_info_city.getText().toString();
+        region=tv_person_info_region.getText().toString().replace(' ','_');
         rank=tv_person_info_rank.getText().toString();
         subject=tv_person_info_subject.getText().toString();
         email=tv_person_info_email.getText().toString();
@@ -336,8 +342,7 @@ public class PersonInfoActivity extends AppCompatActivity {
         Map<String,String> map = new HashMap<>();
         map.put("realname",realname);
         map.put("gender",gender);
-        map.put("province",province);
-        map.put("city",city);
+        map.put("region",region);
         map.put("rank",rank);
         map.put("subject",subject);
         map.put("email",email);
@@ -357,7 +362,7 @@ public class PersonInfoActivity extends AppCompatActivity {
         final Call<UniversalResult> call=teacherInfoRevise.teacherInfoRevise(map);
         call.enqueue(new Callback<UniversalResult>() {
             @Override
-            public void onResponse(Call<UniversalResult> call, Response<UniversalResult> response) {
+            public void onResponse(Call<UniversalResult> call, final Response<UniversalResult> response) {
                 final UniversalResult loginInResult=response.body();
 
                 int resultCode=loginInResult.getResultCode();
@@ -371,8 +376,7 @@ public class PersonInfoActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         StaticInfo.realname=realname;
                                         StaticInfo.gender=gender;
-                                        StaticInfo.province=province;
-                                        StaticInfo.city=city;
+                                        StaticInfo.region=region;
                                         StaticInfo.rank=rank;
                                         StaticInfo.subject=subject;
                                         StaticInfo.email=email;
@@ -392,5 +396,97 @@ public class PersonInfoActivity extends AppCompatActivity {
         });
     }
 
+    //弹出地区填写框
+    public void showRegionReviseDialog(){
+        final View view=View.inflate(this,R.layout.region_revise,null);
+        final Spinner spinnerProvince=(Spinner)view.findViewById(R.id.sp_person_info_fill_province);
+        final Spinner spinnerCity=(Spinner)view.findViewById(R.id.sp_person_info_fill_city);
+        final Spinner spinnerArea=(Spinner)view.findViewById(R.id.sp_person_info_fill_area);
+        initView(spinnerProvince,spinnerCity,spinnerArea);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("修改地区").setIcon(
+                R.drawable.ic_arrow_check).setView(view).setNegativeButton("取消", null);
+        builder.setPositiveButton("确认",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        tv_person_info_region.setText(spinnerProvince.getSelectedItem().toString()+" "+spinnerCity.getSelectedItem().toString()+" "+spinnerArea.getSelectedItem().toString());
+                    }
+                });
+        builder.show();
+    }
+
+    private void initView(final Spinner spinnerProvince,final Spinner spinnerCity,final Spinner spinnerArea) {
+        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        spinnerProvince.setAdapter(provinceAdapter);
+        mCityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        spinnerCity.setAdapter(mCityAdapter);
+        mAreaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        spinnerArea.setAdapter(mAreaAdapter);
+        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int number = refreshCityByProvince(position);
+                if (number != 0) {
+                    int selectedItemPosition = spinnerCity.getSelectedItemPosition();
+                    spinnerCity.setSelection(0);
+                    spinnerArea.setSelection(0);
+                    if (selectedItemPosition == 0)
+                        refreshAreaByCity(0);
+                } else {
+                    mAreaAdapter.clear();
+                    mAreaAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                refreshAreaByCity(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        mProvinces = RegionDAO.getProvinces();
+        provinceAdapter.clear();
+        provinceAdapter.addAll(flatList(mProvinces));
+        provinceAdapter.notifyDataSetChanged();
+    }
+    private void refreshAreaByCity(int position) {
+
+        Map<String, String> map = mCities.get(position);
+        String cityID = map.get("id");
+        List<String> areas = RegionDAO.getAreaByCity(cityID);
+        mAreaAdapter.clear();
+        if (areas.size() != 0)
+            mAreaAdapter.addAll(areas);
+        mAreaAdapter.notifyDataSetChanged();
+
+    }
+
+    private int refreshCityByProvince(int position) {
+
+        Map<String, String> map = mProvinces.get(position);
+        mCities = RegionDAO.getCityByProvince(map.get("id"));
+        mCityAdapter.clear();
+        if (mCities.size() != 0)
+            mCityAdapter.addAll(flatList(mCities));
+        mCityAdapter.notifyDataSetChanged();
+        return mCities.size();
+    }
+
+    private List<String> flatList(List<Map<String, String>> list) {
+        List<String> names = new ArrayList<>();
+        for (Map<String, String> item : list) {
+            names.add(item.get("name"));
+        }
+        return names;
+    }
 
 }

@@ -4,54 +4,38 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        android:divider="@drawable/divider_line">
-    <LinearLayout
-        android:layout_weight="0.5"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            style="@style/left_info_text_style"
-            android:text="省份"/>
+        <Spinner
+            android:id="@+id/sp_person_info_fill_province"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            style="@style/gray_small_center_style"
-            android:ems="5"
-            android:id="@+id/et_province"
-            android:layout_weight="1" />
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/sp_person_info_fill_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
+
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/sp_person_info_fill_area"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
+
+        </Spinner>
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="0.5"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            style="@style/left_info_text_style"
-            android:text="城市"/>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:ems="5"
-            style="@style/gray_small_center_style"
-            android:id="@+id/et_city"
-            android:layout_weight="1" />
-
-</LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

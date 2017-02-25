@@ -50,7 +50,7 @@ public class CoursePartInfo {
         this.courseChapter = courseChapter;
     }
 
-    public void courseCover(String courseCover) {
+    public void setCourseCover(String courseCover) {
         this.courseCover = courseCover;
     }
 

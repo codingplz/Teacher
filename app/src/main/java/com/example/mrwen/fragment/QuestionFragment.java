@@ -2,6 +2,7 @@ package com.example.mrwen.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.example.mrwen.activity.R;
 import com.example.mrwen.view.OnRecyclerViewItemClickListener;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 
 import java.util.ArrayList;
 
@@ -48,6 +50,7 @@ public class QuestionFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_discover, null);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_discover);
         refreshLayout=(TwinklingRefreshLayout)view.findViewById(R.id.trl_discover);
+        refreshLayout.setHeaderView(new SinaRefreshView(getActivity()));
         refreshLayout.setEnableRefresh(true);
         retrofitRefresh();
         return view;
@@ -59,17 +62,24 @@ public class QuestionFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new RefreshListenerAdapter(){
             @Override
             public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
-                retrofitRefresh();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        retrofitRefresh();
+                    }
+                },2000);
             }
 
             @Override
             public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
-                retrofitLoadMore();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        retrofitLoadMore();
+                    }
+                },2000);
             }
         });
-
-
-
 
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));

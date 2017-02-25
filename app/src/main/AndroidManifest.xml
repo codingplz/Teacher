@@ -10,86 +10,84 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.example.mrwen.activity.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@drawable/app_cover"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-
-            android:name="com.example.mrwen.activity.MainActivity"
+            android:name=".MainActivity"
             android:label="爱就开心"
             android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
-            <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-            <data
-                android:host="com.example.mrwen.teacher"
-                android:pathPrefix="/conversationlist"
-                android:scheme="rong" />
-        </intent-filter>
+                <data
+                    android:host="com.example.mrwen.teacher"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
         </activity>
-        <activity android:name="com.example.mrwen.activity.SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name="com.example.mrwen.activity.LoginInActivity"
-            android:launchMode="singleTask">
-        </activity>
-        <activity android:name="com.example.mrwen.activity.SettingActivity" />
-        <activity android:name="com.example.mrwen.activity.PersonInfoActivity" />
-        <activity android:name="com.example.mrwen.activity.RegisterActivity" />
-        <activity android:name="com.example.mrwen.activity.CourseCheckActivity" />
-        <activity android:name="com.example.mrwen.activity.ChapterCatalogActivity" />
+            android:name=".LoginInActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".PersonInfoActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".CourseCheckActivity" />
+        <activity android:name=".ChapterCatalogActivity" />
         <activity
-            android:name="com.example.mrwen.activity.VideoActivity"
+            android:name=".VideoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.example.mrwen.activity.ChapterInfoActivity"
+            android:name=".ChapterInfoActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
-            android:name="com.example.mrwen.activity.CourseEditActivity"
+            android:name=".CourseEditActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name="com.example.mrwen.activity.PersonInfoFillActivity" />
-        <activity android:name="com.example.mrwen.activity.ChapterEditAcitvity" />
-        <activity android:name="com.example.mrwen.activity.LessonCatalogActivity" />
-        <activity android:name="com.example.mrwen.activity.LessonEditAcitvity" />
-        <activity android:name="com.example.mrwen.activity.LessonInfoActivity" />
-        <activity android:name="com.example.mrwen.activity.VideoCheck"></activity>
-        <activity android:name="com.example.mrwen.activity.RanksActivity"></activity>
-        <activity android:name="com.example.mrwen.activity.ContactActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.example.mrwen.activity.PersonalInfoActivity"></activity>
-        <activity android:name="com.example.mrwen.activity.FriendRequestActivity"></activity>
-        <activity android:name="com.example.mrwen.activity.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.example.mrwen.activity.QuestionActivity"></activity>
-        <activity android:name="com.example.mrwen.activity.WriteAnswerActivity"></activity>
-        <activity android:name="com.example.mrwen.activity.MyAnswersActivity"></activity>
-
-
+        <activity android:name=".PersonInfoFillActivity" />
+        <activity android:name=".ChapterEditAcitvity" />
+        <activity android:name=".LessonCatalogActivity" />
+        <activity android:name=".LessonEditAcitvity" />
+        <activity android:name=".LessonInfoActivity" />
+        <activity android:name=".VideoCheck" />
+        <activity android:name=".RanksActivity" />
         <activity
-            android:name="com.example.mrwen.activity.ChatActivity"
+            android:name=".ContactActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PersonalInfoActivity" />
+        <activity android:name=".FriendRequestActivity" />
+        <activity
+            android:name=".SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QuestionActivity" />
+        <activity android:name=".WriteAnswerActivity" />
+        <activity android:name=".MyAnswersActivity" />
+        <activity
+            android:name=".ChatActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
                 <data
                     android:host="com.example.mrwen.teacher"
                     android:pathPrefix="/conversation/"
-                    android:scheme="rong"/>
+                    android:scheme="rong" />
             </intent-filter>
         </activity>
 
@@ -102,6 +100,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/rc_file_path" />
         </provider>
+
+        <activity android:name=".CourseInfoActivity" />
+        <activity android:name=".ClassListActivity" />
+        <activity android:name=".PassReviseActivity"></activity>
     </application>
 
 </manifest>

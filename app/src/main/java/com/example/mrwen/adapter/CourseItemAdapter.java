@@ -1,6 +1,7 @@
 package com.example.mrwen.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
                 uploadChapter.setText(s.getCourseChapter());
             if(s.getCourseCover()!=null) {
                 Context context = App.getContext();
+                Log.i("getCourseCover",s.getCourseCover()+"");
                 Glide.with(context).load(context.getResources().getString(R.string.baseURL)+s.getCourseCover()).signature(new StringSignature(UUID.randomUUID().toString())).into(courseImage);
             }
         }

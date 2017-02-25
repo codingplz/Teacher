@@ -29,7 +29,10 @@ import com.example.mrwen.bean.UniversalResult;
 import com.example.mrwen.interfaces.InterfaceTeacher;
 import com.example.mrwen.staticClass.StaticInfo;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,12 +93,42 @@ public class SplashActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
 
 
+    private void initDB() {
+        InputStream stream = null;
+        FileOutputStream outputStream = null;
+        try {
+            String fileName = "region.db";
+            File file = new File(getFilesDir(), fileName);
+            if (file.exists())
+                return;
+            stream = getAssets().open(fileName);
+            outputStream = new FileOutputStream(file);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = stream.read(buffer)) != -1)
+                outputStream.write(buffer, 0, len);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stream != null)
+                    stream.close();
+                if (outputStream != null)
+                    outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        Toast.makeText(this, "拷贝完成", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-
+        initDB();
         mPreferences = getSharedPreferences(PREFERENCE_USERINFO, MODE_PRIVATE);
         needLogin = mPreferences.getBoolean(KEY_NEED_LOGIN, true);
         if (!needLogin)

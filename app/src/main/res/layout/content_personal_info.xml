@@ -148,7 +148,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/person_info_check_rectangle_height"
                 android:text="湖北 武汉"
-                android:id="@+id/tv_person_info_region"
+                android:id="@+id/tv_personal_info_region"
                 style="@style/right_info_text_style"
                 />
         </LinearLayout>

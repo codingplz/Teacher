@@ -14,8 +14,7 @@ public class Teacher {
     private String password;
     private String realname;
     private String gender;
-    private String province;
-    private String city;
+    private String region;
     private String rank;
     private String subject;
     private String phone;
@@ -80,20 +79,12 @@ public class Teacher {
         this.gender = gender;
     }
 
-    public String getProvince() {
-        return province;
+    public String getRegion() {
+        return region;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getRank() {

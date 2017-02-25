@@ -40,8 +40,6 @@ public class CourseFragment extends BaseFragment {
         private CourseItemAdapter commonAdapter;
         private List<Course> courseList;
         private MyDialog alertDialog=new MyDialog();
-        private int chapterNumber;
-
         @Override
         public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -89,7 +87,6 @@ public class CourseFragment extends BaseFragment {
                                                 @Override
                                                 public void onItemClick(View view, CoursePartInfo data) {
                                                         StaticInfo.currentCourseId=data.getCourseId();
-                                                        Log.i("currentCourseId",StaticInfo.currentCourseId);
                                                         Intent intentCourseCheck = new Intent(getActivity(), CourseCheckActivity.class);
                                                         startActivityForResult(intentCourseCheck,1);
                                                 }

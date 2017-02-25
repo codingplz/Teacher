@@ -5,24 +5,27 @@
         <item
             android:id="@+id/nav_my_info"
             android:icon="@drawable/ic_account_box_black_18dp"
-            android:title="个人信息" />
+            android:title="个人信息"/>
+
         <item
             android:id="@+id/nav_my_answer"
             android:icon="@drawable/ic_menu_camera"
-            android:title="我的回答" />
+            android:title="我的回答"/>
+
         <item
         android:id="@+id/nav_setting"
         android:icon="@drawable/ic_menu_manage"
-        android:title="用户设置" />
+        android:title="用户设置"/>
+
         <item
             android:id="@+id/nav_login_out"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="退出登录" />
+            android:title="退出登录"/>
 
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="其他" />
+            android:title="修改密码"/>
     </group>
 
     <item android:title="Communicate">
@@ -30,8 +33,7 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="分享" />
-
+                android:title="分享"/>
         </menu>
     </item>
 

@@ -80,8 +80,6 @@ public class MyDialog {
         else{
             rb_woman.setChecked(true);
         }
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title).setIcon(
                 R.drawable.ic_arrow_check).setView(view).setNegativeButton("取消", null);
@@ -95,21 +93,55 @@ public class MyDialog {
         builder.show();
     }
 
-    //弹出地区填写框
-    public void showRegionReviseDialog(Context context, String title,String defaultProvince,String defaultCity,final TextView province,final TextView city){
-        final View view=View.inflate(context,R.layout.region_revise,null);
-        final EditText et_province=(EditText)view.findViewById(R.id.et_province);
-        final EditText et_city=(EditText)view.findViewById(R.id.et_city);
-        et_province.setText(defaultProvince);
-        et_city.setText(defaultCity);
+    //弹出学期选择框
+    public void showSemesterSelectDialog(Context context, String title, String defaultString,final TextView textView){
+        final View view=View.inflate(context,R.layout.semester_select,null);
+        RadioButton rb_first_semester=(RadioButton)view.findViewById(R.id.rb_first_semester);
+        RadioButton rb_second_semester=(RadioButton)view.findViewById(R.id.rb_second_semester);
+        final RadioGroup rg_semester=(RadioGroup)view.findViewById(R.id.rg_semester);
+        if(defaultString.equals("上学期"))
+            rb_first_semester.setChecked(true);
+        else{
+            rb_second_semester.setChecked(true);
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title).setIcon(
                 R.drawable.ic_arrow_check).setView(view).setNegativeButton("取消", null);
         builder.setPositiveButton("确认",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        province.setText(et_province.getText());
-                        city.setText(et_city.getText());
+                        RadioButton selected = (RadioButton)view.findViewById(rg_semester.getCheckedRadioButtonId());
+                        textView.setText(selected.getText());
+                    }
+                });
+        builder.show();
+    }
+
+
+    //弹出课程必辅选修选择框
+    public void showMajorSelectDialog(Context context, String title, String defaultString,final TextView textView){
+        final View view=View.inflate(context,R.layout.major_select,null);
+        RadioButton rb_major_must=(RadioButton)view.findViewById(R.id.rb_major_must);
+        RadioButton rb_major_assist=(RadioButton)view.findViewById(R.id.rb_major_assist);
+        RadioButton rb_major_choose=(RadioButton)view.findViewById(R.id.rb_major_choose);
+        final RadioGroup rg_major=(RadioGroup)view.findViewById(R.id.rg_major);
+        if(defaultString.equals("必修")){
+            rb_major_must.setChecked(true);
+        }else if(defaultString.equals("辅修")){
+            rb_major_assist.setChecked(true);
+        }else {
+            rb_major_choose.setChecked(true);
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title).setIcon(
+                R.drawable.ic_arrow_check).setView(view).setNegativeButton("取消", null);
+        builder.setPositiveButton("确认",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        RadioButton selected = (RadioButton)view.findViewById(rg_major.getCheckedRadioButtonId());
+                        textView.setText(selected.getText());
                     }
                 });
         builder.show();

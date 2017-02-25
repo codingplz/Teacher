@@ -35,7 +35,7 @@ public interface InterfaceTeacher {
     Call<RegisterResult> register(@FieldMap Map<String,String> map);
 
     //接受好友请求
-    @POST("IsUsernameUnique")
+    @POST("servlet/IsUsernameUnique")
     @FormUrlEncoded
     Call<UniversalResult> isUsernameUnique(@Field("username") String username);
 
@@ -101,5 +101,8 @@ public interface InterfaceTeacher {
     @GET("DeleteAnswerServlet")
     Call<Result> deleteAnswer(@Query("aid")int aid);
 
-
+    //修改密码
+    @FormUrlEncoded
+    @POST("servlet/PasswordRevise")
+    Call<UniversalResult> passwordRevise(@Field("uid")String uid ,@Field("password")String password );
 }

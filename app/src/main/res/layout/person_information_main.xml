@@ -112,39 +112,24 @@
                 style="@style/right_info_text_style"
                 />
         </LinearLayout>
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/person_info_check_rectangle_height"
+            android:id="@+id/layout_region"
             style="@style/person_info_check_rectangle_linear_layout">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/person_info_check_rectangle_height"
                 style="@style/left_info_text_style"
                 android:text="地区"/>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:id="@+id/r_layout_region"
-                android:layout_height="match_parent">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="fill_parent"
                 android:layout_height="@dimen/person_info_check_rectangle_height"
-                android:text="湖北"
-                android:layout_toLeftOf="@+id/tv_person_info_city"
-                android:gravity="center"
-                android:id="@+id/tv_person_info_province"
+                android:text="湖北 武汉"
+                android:id="@+id/tv_person_info_region"
                 style="@style/right_info_text_style"
                 />
-            <TextView
-                android:layout_width="50dp"
-                android:text="武汉"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:layout_height="@dimen/person_info_check_rectangle_height"
-                android:id="@+id/tv_person_info_city"
-                style="@style/right_info_text_style"
-                />
-            </RelativeLayout>
-        </RelativeLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/person_info_check_rectangle_height"

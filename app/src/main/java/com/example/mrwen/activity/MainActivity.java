@@ -184,9 +184,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
         }
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -209,7 +206,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intentLogin);
             finish();
         } else if (id == R.id.nav_manage) {
-
+            Intent intentPassRevise=new Intent(MainActivity.this,PassReviseActivity.class);
+            startActivity(intentPassRevise);
+            finish();
         } else if (id == R.id.nav_share) {
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -225,6 +224,7 @@ public class MainActivity extends AppCompatActivity
         if(messageFragment != null)
             transaction.hide(messageFragment);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -236,7 +236,5 @@ public class MainActivity extends AppCompatActivity
         }else
             ;
     }
-
-
 }
 

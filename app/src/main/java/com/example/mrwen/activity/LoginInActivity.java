@@ -174,8 +174,7 @@ public class LoginInActivity extends AppCompatActivity {
         StaticInfo.password=teacher.getPassword();
         StaticInfo.realname=teacher.getRealname();
         StaticInfo.gender=teacher.getGender();
-        StaticInfo.province=teacher.getProvince();
-        StaticInfo.city=teacher.getCity();
+        StaticInfo.region=teacher.getRegion();
         StaticInfo.rank=teacher.getRank();
         StaticInfo.subject=teacher.getSubject();
         StaticInfo.phone=teacher.getPhone();

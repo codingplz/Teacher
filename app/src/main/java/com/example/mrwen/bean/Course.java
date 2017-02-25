@@ -18,7 +18,7 @@ public class Course {
     private String loadedNumber;
     private String semester;
     private int teacherID;
-    private String major;
+    private Major major;
 
     public String getSemester() {
         return semester;
@@ -28,11 +28,11 @@ public class Course {
         this.semester = semester;
     }
 
-    public String getMajor() {
+    public Major getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Major major) {
         this.major = major;
     }
 

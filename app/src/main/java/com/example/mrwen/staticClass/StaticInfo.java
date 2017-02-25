@@ -18,8 +18,7 @@ public  class StaticInfo {
     public static String password;
     public static String realname;
     public static String gender;
-    public static String province;
-    public static String city;
+    public static String region;
     public static String rank;
     public static String subject;
     public static String phone;

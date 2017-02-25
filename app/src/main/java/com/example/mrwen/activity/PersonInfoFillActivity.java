@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,11 +24,14 @@ import com.example.mrwen.bean.RegisterResult;
 import com.example.mrwen.bean.UniversalResult;
 import com.example.mrwen.Utils.MyDialog;
 import com.example.mrwen.interfaces.InterfaceTeacher;
+import com.example.mrwen.otherclass.RegionDAO;
 import com.example.mrwen.staticClass.StaticInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
@@ -45,13 +50,11 @@ public class PersonInfoFillActivity extends AppCompatActivity {
 
     //对象的变量
     private  int id;
-    private String identity;
+    private String region;
     private String username;
     private String password;
     private String realname;
     private String gender;
-    private String province;
-    private String city;
     private String rank;
     private String subject;
     private String phone;
@@ -64,14 +67,20 @@ public class PersonInfoFillActivity extends AppCompatActivity {
     //获取信息的控件
     private EditText et_realname;
     private Spinner sp_gender;
-    private EditText et_province;
-    private EditText et_city;
     private EditText et_rank;
     private EditText et_subject;
     private EditText et_phone;
     private EditText et_email;
     private TextView tv_dialog;
     private ImageView iv_photo;
+    private Spinner spinnerProvince;
+    private Spinner spinnerCity;
+    private Spinner spinnerArea;
+
+    private ArrayAdapter<String> mCityAdapter;
+    private ArrayAdapter<String> mAreaAdapter;
+    private List<Map<String, String>> mProvinces;
+    private List<Map<String, String>> mCities;
 
     private Button bt_save;
     @Override
@@ -84,8 +93,6 @@ public class PersonInfoFillActivity extends AppCompatActivity {
 
         et_realname=(EditText)findViewById(R.id.et_realname);
         sp_gender=(Spinner)findViewById(R.id.sp_gender);
-        et_province=(EditText)findViewById(R.id.et_province);
-        et_city=(EditText)findViewById(R.id.et_city);
         et_rank=(EditText)findViewById(R.id.et_rank);
         et_subject=(EditText)findViewById(R.id.et_subject);
         et_phone=(EditText) findViewById(R.id.et_phone);
@@ -93,6 +100,10 @@ public class PersonInfoFillActivity extends AppCompatActivity {
         tv_dialog=(TextView)findViewById(R.id.tv_signature);
         bt_save=(Button)findViewById(R.id.bt_personInfoEditSave);
         iv_photo=(ImageView)findViewById(R.id.iv_photo);
+        spinnerProvince=(Spinner)findViewById(R.id.sp_person_info_fill_province);
+        spinnerCity=(Spinner)findViewById(R.id.sp_person_info_fill_city);
+        spinnerArea=(Spinner)findViewById(R.id.sp_person_info_fill_area);
+        initView();
 
         //点击编辑
         tv_dialog.setOnClickListener(new View.OnClickListener() {
@@ -296,33 +307,12 @@ public class PersonInfoFillActivity extends AppCompatActivity {
         }
     }
 
-//    private String uploadPic(Bitmap bitmap) {
-//        // 上传至服务器
-//        // ... 可以在这里把Bitmap转换成file，然后得到file的url，做文件上传操作
-//        // 注意这里得到的图片已经是圆形图片了
-//        // bitmap是没有做个圆形处理的，但已经被裁剪了
-//
-//         imagePath= PictureCut.savePhoto(bitmap, Environment
-//                .getExternalStorageDirectory().getAbsolutePath(), String
-//                .valueOf(System.currentTimeMillis()));
-//        Log.e("imagePath", imagePath+"");
-//        if(imagePath != null){
-//            // 拿着imagePath上传了
-//            // ...
-//            return imagePath;
-//        }
-//        return imagePath;
-//    }
-
-
 
     //信息的提取赋值
     private Map<String,String> getInformation(){
-        identity="t";
         realname=et_realname.getText().toString();
         gender=sp_gender.getSelectedItem().toString();
-        province=et_province.getText().toString();
-        city=et_city.getText().toString();
+        region=spinnerProvince.getSelectedItem().toString()+"_"+spinnerCity.getSelectedItem().toString()+"_"+spinnerArea.getSelectedItem().toString();
         rank=et_rank.getText().toString();
         subject=et_subject.getText().toString();
         phone=et_phone.getText().toString();
@@ -335,16 +325,88 @@ public class PersonInfoFillActivity extends AppCompatActivity {
         Map<String,String> map = new HashMap<>();
         map.put("username",username);
         map.put("password",password);
-        map.put("identity","t");
         map.put("realname",realname);
         map.put("gender",gender);
-        map.put("province",province);
-        map.put("city",city);
+        map.put("region",region);
         map.put("rank",rank);
         map.put("subject",subject);
         map.put("phone",phone);
         map.put("email",email);
         map.put("signature",signature);
         return map;
+    }
+
+    private void initView() {
+        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        spinnerProvince.setAdapter(provinceAdapter);
+        mCityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        spinnerCity.setAdapter(mCityAdapter);
+        mAreaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>());
+        spinnerArea.setAdapter(mAreaAdapter);
+        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int number = refreshCityByProvince(position);
+                if (number != 0) {
+                    int selectedItemPosition = spinnerCity.getSelectedItemPosition();
+                    spinnerCity.setSelection(0);
+                    spinnerArea.setSelection(0);
+                    if (selectedItemPosition == 0)
+                        refreshAreaByCity(0);
+                } else {
+                    mAreaAdapter.clear();
+                    mAreaAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                refreshAreaByCity(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        mProvinces = RegionDAO.getProvinces();
+        provinceAdapter.clear();
+        provinceAdapter.addAll(flatList(mProvinces));
+        provinceAdapter.notifyDataSetChanged();
+    }
+    private void refreshAreaByCity(int position) {
+
+        Map<String, String> map = mCities.get(position);
+        String cityID = map.get("id");
+        List<String> areas = RegionDAO.getAreaByCity(cityID);
+        mAreaAdapter.clear();
+        if (areas.size() != 0)
+            mAreaAdapter.addAll(areas);
+        mAreaAdapter.notifyDataSetChanged();
+
+    }
+
+    private int refreshCityByProvince(int position) {
+
+        Map<String, String> map = mProvinces.get(position);
+        mCities = RegionDAO.getCityByProvince(map.get("id"));
+        mCityAdapter.clear();
+        if (mCities.size() != 0)
+            mCityAdapter.addAll(flatList(mCities));
+        mCityAdapter.notifyDataSetChanged();
+        return mCities.size();
+    }
+
+    private List<String> flatList(List<Map<String, String>> list) {
+        List<String> names = new ArrayList<>();
+        for (Map<String, String> item : list) {
+            names.add(item.get("name"));
+        }
+        return names;
     }
 }
