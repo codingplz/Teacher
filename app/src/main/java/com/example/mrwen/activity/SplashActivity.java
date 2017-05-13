@@ -89,9 +89,9 @@ public class SplashActivity extends AppCompatActivity {
             }
         }
     };
+    
     private boolean needLogin;
     private SharedPreferences mPreferences;
-
 
     private void initDB() {
         InputStream stream = null;

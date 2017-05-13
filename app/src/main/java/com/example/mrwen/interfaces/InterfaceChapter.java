@@ -44,4 +44,8 @@ public interface InterfaceChapter {
     @POST("servlet/LessonNumberPlus")
     Call<UniversalResult> LessonNumberPlus(@Field("chapterId") int id);
 
+    //删除单元
+    @GET("servlet/DeleteChapter")
+    Call<UniversalResult> deleteChapter(@Query("id") int id);
+
 }

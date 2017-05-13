@@ -7,6 +7,7 @@ package com.example.mrwen.bean;
 public class GetVideoResult {
     int resultCode;
     String videoURL;
+    String videoImageURL;
     String lessonName;
 
     public String getLessonName() {
@@ -30,4 +31,11 @@ public class GetVideoResult {
         this.videoURL = videoURL;
     }
 
+    public String getVideoImageURL() {
+        return videoImageURL;
+    }
+
+    public void setVideoImageURL(String videoImageURL) {
+        this.videoImageURL = videoImageURL;
+    }
 }

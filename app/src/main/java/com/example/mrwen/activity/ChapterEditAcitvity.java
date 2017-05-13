@@ -104,9 +104,8 @@ public class ChapterEditAcitvity extends AppCompatActivity {
                                 .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-
-                                        Intent intentChapterCatalog=new Intent(ChapterEditAcitvity.this,ChapterCatalogActivity.class);
-                                        startActivity(intentChapterCatalog);
+                                        Intent intent=new Intent(ChapterEditAcitvity.this,ChapterListActivity.class);
+                                        startActivity(intent);
                                         finish();
                                     }
                                 })

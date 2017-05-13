@@ -117,13 +117,13 @@ public class VideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_activity);
-
         ButterKnife.bind(this);
-        Vitamio.initialize(this);
+        Vitamio.isInitialized(this);
         initListener();
         initVideoView();
         initData();
         startUpdate();
+
     }
 
     public void playVideo(String url) {
@@ -147,6 +147,7 @@ public class VideoActivity extends AppCompatActivity {
         };
         timer.schedule(task, UPDATE_INTERVAL, UPDATE_INTERVAL);
     }
+
 
     private void initListener() {
         mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {

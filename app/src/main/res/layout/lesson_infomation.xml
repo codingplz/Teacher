@@ -70,6 +70,69 @@
                 style="@style/right_info_text_style"
                 />
         </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/layout_lesson_video"
+            style="@style/coursen_information_check_rectangle_linear_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height">
+
+            <TextView
+                style="@style/left_info_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:text="视频查看" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/ic_arrow_check" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_lesson_statistic"
+            style="@style/coursen_information_check_rectangle_linear_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height">
+
+            <TextView
+                style="@style/left_info_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:text="课时统计" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/ic_arrow_check" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_lesson_test"
+            style="@style/coursen_information_check_rectangle_linear_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/course_info_check_rectangle_height">
+
+            <TextView
+                style="@style/left_info_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:text="课后练习" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/ic_arrow_check" />
+        </RelativeLayout>
+
 
 
 

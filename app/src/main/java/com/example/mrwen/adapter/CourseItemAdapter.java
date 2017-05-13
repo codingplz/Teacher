@@ -1,11 +1,13 @@
 package com.example.mrwen.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,41 +25,54 @@ import com.bumptech.glide.signature.StringSignature;
 import com.example.mrwen.activity.App;
 import com.example.mrwen.otherclass.CoursePartInfo;
 import com.example.mrwen.activity.R;
+import com.example.mrwen.view.OnCourseDeleteListener;
 
 
 public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.ViewHolder>
 {
     private List<CoursePartInfo> courseInfoList;
     private OnItemClickListener mListener;
+    private OnCourseDeleteListener onCourseDeleteListener;
 
     public CourseItemAdapter(List<CoursePartInfo> courseInfoList)
     {
         this.courseInfoList = courseInfoList;
     }
 
+    public void setOnCourseDeleteListener(OnCourseDeleteListener listener){
+        this.onCourseDeleteListener=listener;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
     {
         final View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.course_item,viewGroup,false);
-        itemView.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        if(mListener != null)
-                    mListener.onItemClick(v, (CoursePartInfo) itemView.getTag());
-            }
 
-        });
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i)
+    public void onBindViewHolder(final ViewHolder viewHolder, int i)
     {
-        CoursePartInfo s = courseInfoList.get(i);
+        final CoursePartInfo s = courseInfoList.get(i);
         viewHolder.bindData(s);
         viewHolder.itemView.setTag(s);
+        viewHolder.courseCheck.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(mListener != null)
+                    mListener.onItemClick(v, s);
+            }
+        });
+        viewHolder.deleteCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onCourseDeleteListener!=null)
+                    onCourseDeleteListener.onCourseDeleteClick(Integer.parseInt(s.getCourseId()),s.getChapterNumber(),s.getCourseName());
+            }
+        });
     }
 
     //获得列表项的数目
@@ -73,6 +88,8 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
         private TextView followNumber;
         private TextView uploadChapter;
         private ImageView courseImage;
+        private LinearLayout deleteCourse;
+        private LinearLayout courseCheck;
 
         public ViewHolder(View itemView)
         {
@@ -81,6 +98,8 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
             followNumber = (TextView) itemView.findViewById(R.id.tv_followNumber);
             uploadChapter = (TextView) itemView.findViewById(R.id.tv_uploadChapter);
             courseImage=(ImageView)itemView.findViewById(R.id.iv_courseImage);
+            deleteCourse=(LinearLayout)itemView.findViewById(R.id.layout_delete_course);
+            courseCheck=(LinearLayout)itemView.findViewById(R.id.layout_course_check);
         }
 
         public void bindData(CoursePartInfo s)

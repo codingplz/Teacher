@@ -12,4 +12,8 @@ public class TimeUtils {
         SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
         return  mFormat.format(date);
     }
+    public static String ExactFormat(Date date) {
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return  mFormat.format(date);
+    }
 }

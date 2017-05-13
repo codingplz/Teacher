@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.example.mrwen.Utils.MyDialog;
 import com.example.mrwen.bean.GetVideoResult;
 import com.example.mrwen.bean.UniversalResult;
@@ -23,6 +25,7 @@ import com.example.mrwen.interfaces.InterfaceLesson;
 import com.example.mrwen.staticClass.StaticInfo;
 
 import java.util.Map;
+import java.util.UUID;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -99,17 +102,12 @@ public class VideoCheck extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetVideoResult> call, Response<GetVideoResult> response) {
                 if(response.body().getResultCode()==1){
-                    FFmpegMediaMetadataRetriever mmr = new FFmpegMediaMetadataRetriever();
-                    StaticInfo.currentVideoURL=getResources().getString(R.string.baseURL)+response.body().getVideoURL();
-                    mmr.setDataSource(StaticInfo.currentVideoURL);
-                    mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_ALBUM);
-                    mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_ARTIST);
-
-                    Bitmap b = mmr.getFrameAtTime(100000, FFmpegMediaMetadataRetriever.OPTION_CLOSEST); // frame at 2 seconds
-                    byte [] artwork = mmr.getEmbeddedPicture();
-                    mmr.release();
-                    iv_video_image.setImageBitmap(b);
+                    Log.i("imageURLLLL",getResources().getString(R.string.baseURL)+response.body().getVideoImageURL());
+                    if(response.body().getVideoImageURL()!=null)
+                        Glide.with(VideoCheck.this).load(getResources().getString(R.string.baseURL)+response.body().getVideoImageURL())
+                                .signature(new StringSignature(UUID.randomUUID().toString())).into(iv_video_image);
                     tv_video_name.setText(response.body().getLessonName());
+                    StaticInfo.currentVideoURL=getResources().getString(R.string.baseURL)+response.body().getVideoURL();
                 }else {
                     alertDialog.showAlertDialgo(VideoCheck.this,"获取视频失败");
                 }

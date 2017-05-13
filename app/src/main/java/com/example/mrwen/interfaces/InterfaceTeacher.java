@@ -1,6 +1,9 @@
 package com.example.mrwen.interfaces;
 
 import com.example.mrwen.bean.Answer;
+import com.example.mrwen.bean.ChatGroup;
+import com.example.mrwen.bean.Exercise;
+import com.example.mrwen.bean.ExerciseCatagory;
 import com.example.mrwen.bean.FriendRequest;
 import com.example.mrwen.bean.Info;
 import com.example.mrwen.bean.InfoDetail;
@@ -105,4 +108,36 @@ public interface InterfaceTeacher {
     @FormUrlEncoded
     @POST("servlet/PasswordRevise")
     Call<UniversalResult> passwordRevise(@Field("uid")String uid ,@Field("password")String password );
+
+    //发送好友请求
+    @POST("servlet/CreateClass")
+    @FormUrlEncoded
+    Call<UniversalResult> createClass(@FieldMap Map<String,String> map);
+
+    //获取群组
+    @GET("GetGroupsServlet")
+    Call<ArrayList<ChatGroup>> getGroups(@Query("uid") String uid);
+
+    //获取题目
+    @GET("servlet/GetTest")
+    Call<ArrayList<Exercise>> getTest(@Query("tid") String tid);
+
+    //获取单个题目
+    @GET("servlet/GetSingleExercise")
+    Call<Exercise> getSingleExercise(@Query("exerciseId") String id);
+
+    //上传题目
+    @FormUrlEncoded
+    @POST("servlet/UploadTest")
+    Call<UniversalResult> uploadTest(@FieldMap Map<String,String> map);
+
+    //获取题集
+    @GET("servlet/GetExerciseCatagory")
+    Call<ExerciseCatagory> getExerciseCatagory(@Query("id") String id);
+
+    //获取题集内题目
+    @GET("servlet/GetExercise")
+    Call<ArrayList<Exercise>> getExercise(@Query("id") String id);
+
+
 }

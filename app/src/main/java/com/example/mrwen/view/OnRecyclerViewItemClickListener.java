@@ -10,4 +10,5 @@ import java.util.ArrayList;
 
 public interface OnRecyclerViewItemClickListener<E> {
     void onItemClick(View v, E data);
+
 }

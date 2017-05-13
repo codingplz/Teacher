@@ -21,6 +21,7 @@ import com.example.mrwen.view.OnDeleteClickListener;
 import com.example.mrwen.view.OnUserInfoClickListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import butterknife.ButterKnife;
 
@@ -65,6 +66,7 @@ public class RecyclerMyAnswersAdapter extends BaseRecyclerViewAdapter<Answer,Rec
         holder.tvContent.setText(answer.getContent());
         holder.tvTitle.setText(issue.getTitle());
         holder.tvAgree.setText(answer.getAgree()+"人赞同");
+
         holder.itemView.setTag(answer);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +75,7 @@ public class RecyclerMyAnswersAdapter extends BaseRecyclerViewAdapter<Answer,Rec
                     mListener.onItemClick(v, (Answer) v.getTag());
             }
         });
+
         holder.ibDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +83,7 @@ public class RecyclerMyAnswersAdapter extends BaseRecyclerViewAdapter<Answer,Rec
                     mOnDeleteClickListener.onDeleteClick(answer.getId());
             }
         });
+
         holder.llUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,12 +91,13 @@ public class RecyclerMyAnswersAdapter extends BaseRecyclerViewAdapter<Answer,Rec
                     mOnUserInfoClickListener.onUserInfoClickListener("s"+user.getId());
             }
         });
-
     }
+
     public void remove(int id){
-        for (Answer answer : data) {
+        for (Iterator iter=data.iterator();iter.hasNext();) {
+            Answer answer=(Answer) iter.next();
             if (answer.getId()==id)
-                data.remove(answer);
+                iter.remove();
         }
         UiUtils.runInMainThread(new Runnable() {
             @Override

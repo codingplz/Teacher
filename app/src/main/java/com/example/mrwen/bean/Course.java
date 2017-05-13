@@ -9,7 +9,7 @@ public class Course {
 
     private String name;
     private String focusNumber;
-    private String chapterNumber;
+    private int chapterNumber;
     private String coverURL;
     private String description;
     private String grade;
@@ -19,6 +19,15 @@ public class Course {
     private String semester;
     private int teacherID;
     private Major major;
+    private Teacher teacher;
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public String getSemester() {
         return semester;
@@ -86,10 +95,10 @@ public class Course {
     public void setFocusNumber(String focusNumber) {
         this.focusNumber = focusNumber;
     }
-    public String getChapterNumber() {
+    public int getChapterNumber() {
         return chapterNumber;
     }
-    public void setChapterNumber(String chapterNumber) {
+    public void setChapterNumber(int chapterNumber) {
         this.chapterNumber = chapterNumber;
     }
     public String getCoverURL() {

@@ -6,17 +6,18 @@ package com.example.mrwen.otherclass;
 
 public class CoursePartInfo {
     private String courseId;
-
+    private int chapterNumber;
     private String courseName;
     private String courseSubject;
     private String courseChapter;
     private String courseCover;
 
-    public CoursePartInfo(String courseName, String courseSubject, String courseChapter, String courseCover){
+    public CoursePartInfo(String courseName, String courseSubject, String courseChapter, String courseCover,int chapterNumber){
         this.courseName=courseName;
         this.courseSubject=courseSubject;
         this.courseChapter=courseChapter;
         this.courseCover=courseCover;
+        this.chapterNumber=chapterNumber;
     }
     public String getCourseId() {
         return courseId;
@@ -54,4 +55,11 @@ public class CoursePartInfo {
         this.courseCover = courseCover;
     }
 
+    public int getChapterNumber() {
+        return chapterNumber;
+    }
+
+    public void setChapterNumber(int chapterNumber) {
+        this.chapterNumber = chapterNumber;
+    }
 }

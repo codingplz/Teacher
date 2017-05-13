@@ -58,6 +58,8 @@ public class CourseCheckActivity extends AppCompatActivity{
     RelativeLayout layout_course_info;
     @Bind(R.id.layout_class_management)
     RelativeLayout layout_class_management;
+    @Bind(R.id.layout_course_notice)
+    RelativeLayout layout_course_notice;
 
 
     @Override
@@ -70,7 +72,7 @@ public class CourseCheckActivity extends AppCompatActivity{
         layout_chapterCatalog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentChapterEdit=new Intent(CourseCheckActivity.this,ChapterCatalogActivity.class);
+                Intent intentChapterEdit=new Intent(CourseCheckActivity.this,ChapterListActivity.class);
                 startActivity(intentChapterEdit);
             }
         });
@@ -98,6 +100,15 @@ public class CourseCheckActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(CourseCheckActivity.this,ClassListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //课程公告
+        layout_course_notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CourseCheckActivity.this,CourseNoticeActivity.class);
                 startActivity(intent);
             }
         });

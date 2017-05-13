@@ -29,12 +29,19 @@ public  class StaticInfo {
     public static String currentCourseId;
     public static String currentChapterId;
     public static String currentLessonId;
+    public static int currentClassId;
     public static String currentVideoURL;
+
+    public static int REQURST_SEARCH=1;
+    public static int IMAGE_RADIUS=5;
 
     public static ArrayList<String> groupNames=new ArrayList<>();
     public static String  uid;
     public static Uri getPrivateChatUri(String uid, String title) {
         return Uri.parse("rong://com.example.mrwen.teacher/conversation/private?targetId=" + uid + "&title=" + title);
+    }
+    public static Uri getGroupChatUri(String gid,String title){
+        return Uri.parse("rong:///com.example.mrwen.teacher/conversation/group?targetId="+gid+"&title="+title);
     }
 
 
@@ -60,5 +67,7 @@ public  class StaticInfo {
         }
         return identity;
     }
+
+
 
 }

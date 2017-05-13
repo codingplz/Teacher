@@ -303,7 +303,8 @@ public class PersonInfoFillActivity extends AppCompatActivity {
             photo = extras.getParcelable("data");
             photo = PictureCut.toRoundBitmap(photo, tempUri); // 这个时候的图片已经被处理成圆形的了
             iv_photo.setImageBitmap(photo);
-            //uploadPic(photo);
+            iv_photo.setVisibility(View.VISIBLE);
+            //uploaidPic(photo);
         }
     }
 

@@ -149,7 +149,6 @@ public class CourseEditActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
 
     private Map<String,String> getInformation(){

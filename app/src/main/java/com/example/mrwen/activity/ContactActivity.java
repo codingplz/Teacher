@@ -12,20 +12,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import com.example.mrwen.Utils.MyDialog;
 import com.example.mrwen.adapter.ExpandableContactAdapter;
-import com.example.mrwen.bean.QueryItem;
 import com.example.mrwen.bean.Result;
 import com.example.mrwen.bean.Roster;
 import com.example.mrwen.bean.RosterGroup;
-import com.example.mrwen.bean.UniversalResult;
 import com.example.mrwen.interfaces.InterfaceTeacher;
 import com.example.mrwen.staticClass.StaticInfo;
 import com.example.mrwen.view.AnimatedExpandableListView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -46,6 +52,10 @@ public class ContactActivity extends AppCompatActivity {
     @Bind(R.id.tv_number)
     TextView tvNumber;
     private ExpandableContactAdapter mAdapter;
+    private Gson gson = new Gson();
+    private String cachePath;
+    private File cacheFile;
+    private ArrayList<RosterGroup> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +65,7 @@ public class ContactActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initView();
-        initData();
+        loadData();
     }
 
     private void initView() {
@@ -65,7 +75,7 @@ public class ContactActivity extends AppCompatActivity {
                 Intent intent = new Intent(ContactActivity.this, SearchActivity.class);
                 intent.putExtra("query", query);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, StaticInfo.REQURST_SEARCH);
                 return false;
             }
 
@@ -80,16 +90,69 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Roster roster = (Roster) mAdapter.getChild(groupPosition, childPosition);
-                Intent intent = new Intent(Intent.ACTION_VIEW, StaticInfo.getPrivateChatUri(roster.getUid(),roster.getRemark()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, StaticInfo.getPrivateChatUri(roster.getUid(), roster.getRemark()));
                 startActivity(intent);
                 return false;
             }
         });
     }
 
-    private void initData() {
-        retrofitGetRequestCount();
+    public void loadData() {
+        cachePath = getCacheDir().getAbsolutePath();
+        cacheFile = new File(cachePath + File.separator + getClass().getSimpleName());
+        if (cacheFile.exists()){
+
+            BufferedReader bufferedReader = null;
+            try {
+                bufferedReader = new BufferedReader(new FileReader(cacheFile));
+                String line ;
+                StringBuilder builder = new StringBuilder();
+                while ((line = bufferedReader.readLine()) != null) {
+                    builder.append(line);
+                    data = gson.fromJson(builder.toString(), new TypeToken<ArrayList<RosterGroup>>(){}.getType());
+                }
+                mAdapter.setData(data);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        loadDataFromServer();
+    }
+
+    private void loadDataFromServer() {
         retrofitGetContacts();
+        retrofitGetRequestCount();
+    }
+
+
+    private void retrofitGetRequestCount(){
+        final MyDialog alertDialog=new MyDialog();
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl(getResources().getString(R.string.baseURL))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final InterfaceTeacher getRequestCount=retrofit.create(InterfaceTeacher.class);
+        final Call<Result> call=getRequestCount.getRequestCount(StaticInfo.uid);
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+                if(response.body()!=null)
+                    tvNumber.setText(response.body().getCount()+"");
+            }
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                alertDialog.showAlertDialgo(ContactActivity.this,t.toString());
+            }
+        });
     }
 
     private void retrofitGetContacts(){
@@ -103,38 +166,42 @@ public class ContactActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<RosterGroup>>() {
             @Override
             public void onResponse(Call<ArrayList<RosterGroup>> call, Response<ArrayList<RosterGroup>> response) {
-                mAdapter.setData(response.body());
-                StaticInfo.groupNames.clear();
-                for (RosterGroup group : response.body()) {
-                    StaticInfo.groupNames.add(group.getName());
+                if(response.body()!=null) {
+                    mAdapter.setData(response.body());
+                    StaticInfo.groupNames.clear();
+                    for (RosterGroup group : response.body()) {
+                        StaticInfo.groupNames.add(group.getName());
+                    }
+                    writeToCache(response.body());
                 }
             }
             @Override
             public void onFailure(Call<ArrayList<RosterGroup>> call, Throwable t) {
-                alertDialog.showAlertDialgo(ContactActivity.this,t.toString());
+                new AlertDialog.Builder(ContactActivity.this).setMessage("获取数据异常:" + t.toString()).setPositiveButton("重试", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        loadDataFromServer();
+                    }
+                }).setNegativeButton("取消", null).show();
             }
         });
     }
 
-    private void retrofitGetRequestCount(){
-        final MyDialog alertDialog=new MyDialog();
-        Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl(getResources().getString(R.string.baseURL))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        final InterfaceTeacher getRequestCount=retrofit.create(InterfaceTeacher.class);
-        final Call<Result> call=getRequestCount.getRequestCount(StaticInfo.uid);
-        call.enqueue(new Callback<Result>() {
-            @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
-                tvNumber.setText(response.body().getCount()+"");
-            }
-            @Override
-            public void onFailure(Call<Result> call, Throwable t) {
-                alertDialog.showAlertDialgo(ContactActivity.this,t.toString());
-            }
-        });
+
+    private void writeToCache(ArrayList<RosterGroup> groups) {
+        data = groups;
+        PrintWriter writer = null;
+        try {
+            writer =new PrintWriter( cacheFile) ;
+            writer.print(gson.toJson(groups));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            writer.close();
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,16 +213,24 @@ public class ContactActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            initData();
+        if (requestCode == StaticInfo.REQURST_SEARCH && resultCode == RESULT_OK) {
+            loadDataFromServer();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @OnClick(R.id.rl_friend_request)
-    public void onClick() {
-        Intent intent = new Intent(this, FriendRequestActivity.class);
-        startActivityForResult(intent, 1);
+    @OnClick({R.id.rl_friend_request, R.id.rl_my_group})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.rl_friend_request:
+                Intent intent = new Intent(this, FriendRequestActivity.class);
+                startActivityForResult(intent, StaticInfo.REQURST_SEARCH);
+                break;
+            case R.id.rl_my_group:
+                Intent groupIntent = new Intent(this, GroupsActivity.class);
+                startActivity(groupIntent);
+                break;
+        }
     }
 
 }

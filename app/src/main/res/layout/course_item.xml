@@ -2,74 +2,120 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="115dp"
     android:layout_marginLeft="1dp"
     android:layout_marginRight="1dp"
     app:cardCornerRadius="5dp"
     app:elevation="1dp">
-
-    <LinearLayout
-        android:id="@+id/base_swipe_item_container"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <ImageView
-            android:id="@+id/iv_courseImage"
-            android:layout_width="92dp"
-            android:layout_height="130dp"
-            android:src="@drawable/default_cover"
-            android:layout_gravity="center_vertical|left" />
+    <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+        <!-- Bottom View Start-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical|right">
-            <TextView
-                android:id="@+id/tv_courseName"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:textColor="#333333"
-                android:textSize="19dp"
-                android:text="测试数据测试数据测试数据"
-                android:gravity="center_vertical|left"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="35dp">
-            <TextView
-                android:id="@+id/tv_followStudent"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:textColor="#000000"
-                android:textSize="15dp"
-                android:text="关注人数"
-                android:layout_weight="1"
-                android:gravity="center_vertical|left"/>
-            <TextView
-                android:id="@+id/tv_followNumber"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textColor="#000000"
-                android:textSize="15dp"
-                android:text="1.2K"
-                android:layout_weight="1"
-                android:gravity="center_vertical|left"/>
+            android:background="@color/color_low_red"
+            android:id="@+id/layout_delete_course"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <!--What you want to show-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_delete_forever_white_24dp"
+                android:id="@+id/iv_study_info" />
+        </LinearLayout>
+        <!-- Bottom View End-->
 
-            </LinearLayout>
-            <TextView
-                android:id="@+id/tv_uploadChapter"
+        <!-- Surface View Start -->
+        <LinearLayout
+            android:padding="10dp"
+            android:background="#ffffff"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--What you want to show in SurfaceView-->
+            <LinearLayout
+                android:id="@+id/layout_course_check"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="已上传5/8个单元"
-                android:textColor="#3949ab"
-                android:textSize="15dp"
-                android:gravity="center_vertical|left"/>
+                android:layout_height="115dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_courseImage"
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/default_cover"
+                    android:layout_gravity="center_vertical|left" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical|right">
+
+                    <TextView
+                        android:id="@+id/tv_courseName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#333333"
+                        android:textSize="18dp"
+                        android:maxLines="2"
+                        android:layout_gravity="center"
+                        android:text="测试数据测试数据测试数据啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
+                        android:gravity="center_vertical|left"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp">
+
+                        <TextView
+                            android:id="@+id/tv_followStudent"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:textColor="#000000"
+                            android:textSize="15dp"
+                            android:text="关注人数"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"/>
+
+                        <TextView
+                            android:id="@+id/tv_followNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:textColor="#000000"
+                            android:textSize="15dp"
+                            android:text="1.2K"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"/>
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_uploadChapter"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="已上传5个单元"
+                        android:textColor="#3949ab"
+                        android:textSize="15dp"
+                        android:paddingBottom="5dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical|left"/>
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+
+        <!-- Surface View End -->
+    </com.daimajia.swipe.SwipeLayout>
+
+
 
 </android.support.v7.widget.CardView>

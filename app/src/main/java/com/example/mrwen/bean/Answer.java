@@ -32,6 +32,7 @@ public class Answer {
     public void setId(int id) {
         this.id = id;
     }
+
     public int getAgree() {
         return agree;
     }
@@ -73,4 +74,6 @@ public class Answer {
     public void setAnonymous(boolean anonymous) {
         this.anonymous = anonymous;
     }
+
+
 }

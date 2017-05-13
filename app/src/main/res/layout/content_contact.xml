@@ -13,18 +13,19 @@
 
     <RelativeLayout
         android:id="@+id/rl_friend_request"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/white"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/selector_general_button"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:clickable="true"
         android:gravity="center_vertical"
         >
         <TextView
+            android:drawableLeft="@drawable/ic_chat_red_500_24dp"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:paddingLeft="20dp"
             style="@style/left_info_text_style"
             android:text="好友请求"/>
 
@@ -32,7 +33,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:id="@+id/iv_person_info_photo"
-            android:src="@drawable/ic_arrow_check"
+            android:src="@drawable/ic_keyboard_arrow_right_grey_800_24dp"
             android:layout_alignParentRight="true"
             />
         <TextView
@@ -42,6 +43,31 @@
             android:text="3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_my_group"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/selector_general_button"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:drawableLeft="@drawable/ic_supervisor_account_blue_600_24dp"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            style="@style/left_info_text_style"
+            android:text="我的群组"/>
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_keyboard_arrow_right_grey_800_24dp"
+            android:layout_alignParentRight="true"
+            />
     </RelativeLayout>
 
     <com.example.mrwen.view.AnimatedExpandableListView

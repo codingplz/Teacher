@@ -6,9 +6,8 @@ package com.example.mrwen.otherclass;
 
 public class LessonPartInfo {
     int id;
+    String lessonName;
     String index;
-    String name;
-    int isUpload;
 
     public int getId() {
         return id;
@@ -18,27 +17,19 @@ public class LessonPartInfo {
         this.id = id;
     }
 
+    public String getLessonName() {
+        return lessonName;
+    }
+
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
+    }
+
     public String getIndex() {
         return index;
     }
 
     public void setIndex(String index) {
         this.index = index;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getIsUpload() {
-        return isUpload;
-    }
-
-    public void setIsUpload(int isUpload) {
-        this.isUpload = isUpload;
     }
 }

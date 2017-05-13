@@ -47,21 +47,16 @@
         <activity android:name=".PersonInfoActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".CourseCheckActivity" />
-        <activity android:name=".ChapterCatalogActivity" />
         <activity
             android:name=".VideoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".ChapterInfoActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".CourseEditActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".PersonInfoFillActivity" />
         <activity android:name=".ChapterEditAcitvity" />
-        <activity android:name=".LessonCatalogActivity" />
         <activity android:name=".LessonEditAcitvity" />
-        <activity android:name=".LessonInfoActivity" />
+        <activity android:name=".LessonCheckActivity" />
         <activity android:name=".VideoCheck" />
         <activity android:name=".RanksActivity" />
         <activity
@@ -103,7 +98,22 @@
 
         <activity android:name=".CourseInfoActivity" />
         <activity android:name=".ClassListActivity" />
-        <activity android:name=".PassReviseActivity"></activity>
+        <activity android:name=".PassReviseActivity" />
+        <activity android:name=".ClassCheckActivity" />
+        <activity android:name=".StudentListActivity" />
+        <activity android:name=".AdminClassListActivity" />
+        <activity android:name=".StudyTimeLineActivity" />
+        <activity android:name=".StudyInfoToCourseInfo" />
+        <activity android:name=".StudyInfoToAnswer" />
+        <activity android:name=".ChapterListActivity" />
+        <activity android:name=".ChapterInfoActivity" />
+        <activity android:name=".GroupsActivity" />
+        <activity android:name=".CourseNoticeActivity" />
+        <activity android:name=".WriteNoticeActivity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".ExerciseUploadActivity" />
+        <activity android:name=".TestCheckActivity"/>
+        <activity android:name=".ExerciseCatagoryListActivity"></activity>
     </application>
 
 </manifest>

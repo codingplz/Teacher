@@ -139,6 +139,5 @@ public class ChapterAdapter extends BaseExpandableListAdapter {
     class ItemHolder
     {
         public TextView chapterItem;
-
     }
 }

@@ -113,15 +113,14 @@ public class QuestionFragment extends BaseFragment {
         call.enqueue(new Callback<ArrayList<Issue>>() {
             @Override
             public void onResponse(Call<ArrayList<Issue>> call, Response<ArrayList<Issue>> response) {
-
-
-                if (response.body().size()!=0) {
-                    if (response.body().size()<10){
-                        refreshLayout.setEnableLoadmore(false);
+                if(response.body()!=null) {
+                    if (response.body().size() != 0) {
+                        if (response.body().size() < 10) {
+                            refreshLayout.setEnableLoadmore(false);
+                        }
+                        mAdapter.setData(response.body());
+                    } else {
                     }
-                    mAdapter.setData(response.body());
-                }
-                else{
                 }
             }
             @Override

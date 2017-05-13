@@ -8,6 +8,7 @@ public class ChapterPartInfo {
     int id;
     String index;
     String name;
+    String lessonNumber;
     int isSigned;
 
     public String getIndex() {
@@ -42,4 +43,11 @@ public class ChapterPartInfo {
         this.name = name;
     }
 
+    public String getLessonNumber() {
+        return lessonNumber;
+    }
+
+    public void setLessonNumber(String lessonNumber) {
+        this.lessonNumber = lessonNumber;
+    }
 }

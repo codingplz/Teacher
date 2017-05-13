@@ -2,6 +2,7 @@ package com.example.mrwen.interfaces;
 
 import com.example.mrwen.bean.Course;
 import com.example.mrwen.bean.CourseResult;
+import com.example.mrwen.bean.Notice;
 import com.example.mrwen.bean.Rank;
 import com.example.mrwen.bean.RegisterResult;
 import com.example.mrwen.bean.UniversalResult;
@@ -58,5 +59,22 @@ public interface InterfaceCourse {
     @FormUrlEncoded
     @POST("servlet/ChapterNumberPlus")
     Call<UniversalResult> chapterNumberPlus(@Field("courseId") int id);
+
+    //删除课程
+    @GET("servlet/DeleteCourse")
+    Call<UniversalResult> deleteCourse(@Query("id") int id);
+
+    //上传课程公告
+    @FormUrlEncoded
+    @POST("servlet/NoticeUpload")
+    Call<UniversalResult> noticeUpload(@FieldMap Map<String,String> map);
+
+    //获取课程公告
+    @GET("servlet/GetNotice")
+    Call<ArrayList<Notice>> getNotice(@Query("id") String id);
+
+    //删除课程公告
+    @GET("servlet/DeleteNotice")
+    Call<UniversalResult> deleteNotice(@Query("id") int id);
 
 }

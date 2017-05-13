@@ -254,7 +254,6 @@ public class LoginInActivity extends AppCompatActivity {
 
     private io.rong.imlib.model.UserInfo findUserByUid(String uid) {
         try {
-
             Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl(getResources().getString(R.string.baseURL))
                     .addConverterFactory(GsonConverterFactory.create())
@@ -267,7 +266,6 @@ public class LoginInActivity extends AppCompatActivity {
             if (info!=null)
                 userInfo = new io.rong.imlib.model.UserInfo(info.getUid(), info.getNickname(), Uri.parse(getResources().getString(R.string.baseURL) + info.getImageURL()));
             return userInfo;
-
         } catch (IOException e) {
             e.printStackTrace();
         }

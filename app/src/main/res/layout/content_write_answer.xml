@@ -21,7 +21,7 @@
         <EditText
             android:id="@+id/et_content"
             android:hint="撰写回答"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@color/color_middle_red"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"

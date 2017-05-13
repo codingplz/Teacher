@@ -4,22 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.mrwen.Utils.GlideCircleTransform;
-import com.example.mrwen.Utils.TimeUtils;
 import com.example.mrwen.Utils.UiUtils;
 import com.example.mrwen.activity.R;
 import com.example.mrwen.bean.AdminClass;
-import com.example.mrwen.bean.Answer;
-import com.example.mrwen.bean.Issue;
-import com.example.mrwen.bean.User;
-import com.example.mrwen.view.OnDeleteClickListener;
-import com.example.mrwen.view.OnUserInfoClickListener;
 
 import java.util.ArrayList;
 
@@ -39,7 +29,7 @@ public class RecyclerClassListAdapter extends BaseRecyclerViewAdapter<AdminClass
 
     @Override
     public MyClassesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(UiUtils.getContext()).inflate(R.layout.item_recycle_class_list , parent, false);
+        View view = LayoutInflater.from(UiUtils.getContext()).inflate(R.layout.item_recycler_class_list, parent, false);
         return new MyClassesViewHolder(view);
     }
 
@@ -53,13 +43,14 @@ public class RecyclerClassListAdapter extends BaseRecyclerViewAdapter<AdminClass
 //                .into(holder.ivImage);
         holder.tv_class_region.setText(adminClass.getRegion());
         holder.tv_class_name.setText(adminClass.getSchool()+adminClass.getGrade());
-//        holder.layout_class_list.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mOnUserInfoClickListener!=null)
-//                    mOnUserInfoClickListener.onUserInfoClickListener("s"+user.getId());
-//            }
-//        });
+        holder.itemView.setTag(adminClass);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener!=null)
+                    mListener.onItemClick(v, (AdminClass) v.getTag());
+            }
+        });
 
     }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/menu_item_chapter_name"
+            android:icon="@drawable/ic_account_box_black_18dp"
+            android:title="单元信息"/>
+
+        <item
+            android:id="@+id/menu_item_chapter_statistic"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="单元统计"/>
+
+        <item
+            android:id="@+id/menu_item_chapter_test"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="单元测试"/>
+
+        <item
+            android:id="@+id/menu_item_chapter_add_lesson"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="新建课时"/>
+        <item
+            android:id="@+id/menu_item_chapter_delete"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="删除单元"/>
+</menu>
